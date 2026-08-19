@@ -1150,3 +1150,187 @@ body {
   background: #501020;
   transform: translateY(-1px);
 }
+
+/* ===================================================
+   QR CODE 區域
+   =================================================== */
+
+.qrcode-section {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 20px 50px;
+  position: relative;
+  z-index: 10;
+}
+
+.qrcode-card {
+  width: 100%;
+  max-width: 300px;
+  text-align: center;
+
+  padding: 20px;
+
+  background: linear-gradient(
+    180deg,
+    #2b0b14 0%,
+    #150308 100%
+  );
+
+  border: 2px solid #d4af37;
+  border-radius: 16px;
+
+  box-shadow:
+    0 8px 25px rgba(0, 0, 0, 0.7),
+    0 0 20px rgba(245, 197, 24, 0.25),
+    inset 0 0 15px rgba(0, 0, 0, 0.5);
+}
+
+.qrcode-card h3 {
+  margin: 0 0 6px;
+
+  color: #ffd700;
+
+  font-size: 1.1rem;
+  font-weight: 800;
+
+  text-shadow:
+    0 0 8px rgba(255, 215, 0, 0.4);
+}
+
+.qrcode-card p {
+  margin: 0 0 15px;
+
+  color: #d1b8be;
+
+  font-size: 0.78rem;
+}
+
+.qrcode-image {
+  display: block;
+
+  width: 180px;
+  height: 180px;
+
+  margin: 0 auto;
+
+  padding: 8px;
+
+  background: #ffffff;
+
+  border-radius: 10px;
+
+  object-fit: contain;
+
+  box-shadow:
+    0 0 15px rgba(255, 215, 0, 0.5);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.qrcode-image:hover {
+  transform: scale(1.05);
+
+  box-shadow:
+    0 0 25px rgba(255, 215, 0, 0.8);
+}
+
+/* ===================================================
+   QR CODE
+   =================================================== */
+
+.qrcode-section {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 0 40px;
+}
+
+.qrcode-card {
+  width: 260px;
+  text-align: center;
+
+  padding: 18px;
+
+  background: linear-gradient(
+    180deg,
+    #2b0b14 0%,
+    #150308 100%
+  );
+
+  border: 2px solid #d4af37;
+  border-radius: 16px;
+
+  box-shadow:
+    0 8px 25px rgba(0, 0, 0, 0.7),
+    0 0 20px rgba(245, 197, 24, 0.25);
+}
+
+.qrcode-card h3 {
+  margin: 0 0 6px;
+
+  color: #ffd700;
+
+  font-size: 1.1rem;
+  font-weight: 800;
+}
+
+.qrcode-card p {
+  margin: 0 0 15px;
+
+  color: #d1b8be;
+
+  font-size: 0.78rem;
+}
+
+.qrcode-image {
+  display: block;
+
+  width: 180px;
+  height: 180px;
+
+  margin: 0 auto;
+
+  padding: 8px;
+
+  background: #ffffff;
+
+  border-radius: 10px;
+
+  object-fit: contain;
+
+  box-shadow:
+    0 0 15px rgba(255, 215, 0, 0.5);
+}
+
+.qrcode-image:hover {
+  transform: scale(1.05);
+
+  box-shadow:
+    0 0 25px rgba(255, 215, 0, 0.8);
+}
+
+
+/* 手機版 */
+
+@media (max-width: 600px) {
+
+  .qrcode-section {
+    padding: 15px 0 35px;
+  }
+
+  .qrcode-card {
+    width: 230px;
+    padding: 15px;
+  }
+
+  .qrcode-image {
+    width: 150px;
+    height: 150px;
+  }
+
+}
