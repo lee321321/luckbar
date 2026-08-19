@@ -3,222 +3,843 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>k123幸運拉霸</title>
-  <meta name="description" content="k123幸運拉霸 - 由左而右橫向輪轉，三格可視窗口，支援 product.txt 讀取與寫入、自訂時間與豐富聲光效果。">
+
+  <meta
+    name="description"
+    content="k123幸運拉霸 - 由左而右橫向輪轉，三格可視窗口，支援 product.txt 讀取與寫入、自訂時間與豐富聲光效果。"
+  >
+
   <link rel="stylesheet" href="style.css">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Noto+Sans+TC:wght@400;600;800;900&display=swap" rel="stylesheet">
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  >
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Noto+Sans+TC:wght@400;600;800;900&display=swap"
+    rel="stylesheet"
+  >
 </head>
+
 <body>
-  <!-- 背景裝飾光暈與粒子畫布 -->
+
+  <!-- =========================
+       背景裝飾光暈與粒子
+       ========================= -->
+
   <div class="bg-glow"></div>
+
   <canvas id="particle-canvas"></canvas>
 
+
+  <!-- =========================
+       遊戲主要容器
+       ========================= -->
+
   <div class="game-container">
-    <!-- 機台頂部招牌 -->
+
+
+    <!-- =========================
+         機台頂部招牌
+         ========================= -->
+
     <header class="machine-header">
+
       <div class="header-banner">
-        <span class="jackpot-stars">★ ★ ★</span>
-        <h1 class="header-title">k123幸運拉霸</h1>
-        <span class="header-subtitle">K123 LUCKY DRAW</span>
-        <span class="jackpot-stars">★ ★ ★</span>
+
+        <span class="jackpot-stars">
+          ★ ★ ★
+        </span>
+
+        <h1 class="header-title">
+          k123幸運拉霸
+        </h1>
+
+        <span class="header-subtitle">
+          K123 LUCKY DRAW
+        </span>
+
+        <span class="jackpot-stars">
+          ★ ★ ★
+        </span>
+
       </div>
+
+
       <!-- 頂部跑馬燈 LED -->
-      <div class="marquee-lights top-lights" id="top-lights"></div>
+
+      <div
+        class="marquee-lights top-lights"
+        id="top-lights">
+      </div>
+
     </header>
 
-    <!-- 橫向拉霸主機台與拉桿區域 -->
+
+
+    <!-- =========================
+         橫向拉霸主機台與拉桿
+         ========================= -->
+
     <div class="machine-body-wrapper">
-      <!-- 走馬燈外框與機台本體 -->
-      <main class="slot-cabinet" id="slot-cabinet">
+
+
+      <!-- =========================
+           拉霸機本體
+           ========================= -->
+
+      <main
+        class="slot-cabinet"
+        id="slot-cabinet"
+      >
+
+
         <!-- 左側裝飾燈 -->
-        <div class="side-lights left-lights" id="left-lights"></div>
 
-        <!-- 核心橫向滾輪視窗 -->
-        <div class="reel-viewport-container">
-          <!-- 中獎中心指示線與上下箭頭 -->
-          <div class="payline-indicator">
-            <div class="pointer-arrow top-arrow"></div>
-            <div class="target-frame-glow">
-              <div class="target-frame-badge">中獎區域</div>
-            </div>
-            <div class="pointer-arrow bottom-arrow"></div>
-          </div>
-
-          <!-- 滾輪視窗（寬度固定恰好橫向顯示3格） -->
-          <div class="reel-viewport" id="reel-viewport">
-            <div class="reel-strip" id="reel-strip">
-              <!-- JavaScript 動態生成橫向圖片格子 -->
-            </div>
-          </div>
-
-          <!-- 玻璃反光與左右暗角效果 -->
-          <div class="reel-glass-reflection"></div>
-          <div class="reel-shadow-left"></div>
-          <div class="reel-shadow-right"></div>
+        <div
+          class="side-lights left-lights"
+          id="left-lights">
         </div>
+
+
+
+        <!-- =========================
+             核心橫向滾輪視窗
+             ========================= -->
+
+        <div class="reel-viewport-container">
+
+
+          <!-- 中獎中心指示線 -->
+
+          <div class="payline-indicator">
+
+            <div class="pointer-arrow top-arrow"></div>
+
+            <div class="target-frame-glow">
+
+              <div class="target-frame-badge">
+                中獎區域
+              </div>
+
+            </div>
+
+            <div class="pointer-arrow bottom-arrow"></div>
+
+          </div>
+
+
+
+          <!-- 滾輪視窗 -->
+
+          <div
+            class="reel-viewport"
+            id="reel-viewport"
+          >
+
+            <div
+              class="reel-strip"
+              id="reel-strip"
+            >
+
+              <!-- JavaScript 動態生成橫向圖片格子 -->
+
+            </div>
+
+          </div>
+
+
+
+          <!-- 玻璃反光 -->
+
+          <div class="reel-glass-reflection"></div>
+
+          <!-- 左側暗角 -->
+
+          <div class="reel-shadow-left"></div>
+
+          <!-- 右側暗角 -->
+
+          <div class="reel-shadow-right"></div>
+
+        </div>
+
+
 
         <!-- 右側裝飾燈 -->
-        <div class="side-lights right-lights" id="right-lights"></div>
+
+        <div
+          class="side-lights right-lights"
+          id="right-lights">
+        </div>
+
+
 
         <!-- 底部跑馬燈 LED -->
-        <div class="marquee-lights bottom-lights" id="bottom-lights"></div>
+
+        <div
+          class="marquee-lights bottom-lights"
+          id="bottom-lights">
+        </div>
+
       </main>
 
-      <!-- 擬真 3D 物理拉桿 (位於機台右側) -->
-      <div class="lever-assembly" id="lever-assembly" title="點擊或拖曳拉桿開始抽獎！">
+
+
+      <!-- =========================
+           擬真 3D 物理拉桿
+           ========================= -->
+
+      <div
+        class="lever-assembly"
+        id="lever-assembly"
+        title="點擊或拖曳拉桿開始抽獎！"
+      >
+
+
         <div class="lever-mount">
+
           <div class="lever-bracket"></div>
+
         </div>
+
+
+
         <div class="lever-shaft-track">
-          <div class="lever-arm" id="lever-arm">
+
+          <div
+            class="lever-arm"
+            id="lever-arm"
+          >
+
             <div class="lever-rod"></div>
-            <div class="lever-ball" id="lever-ball">
+
+
+            <div
+              class="lever-ball"
+              id="lever-ball"
+            >
+
               <div class="ball-shine"></div>
+
             </div>
+
           </div>
+
         </div>
-        <div class="lever-hint">PULL</div>
+
+
+
+        <div class="lever-hint">
+          PULL
+        </div>
+
       </div>
+
     </div>
 
-    <!-- 狀態即時顯示與按鈕區 -->
+
+
+    <!-- =========================
+         狀態即時顯示與按鈕
+         ========================= -->
+
     <section class="action-panel">
-      <div class="status-display" id="status-display">
+
+
+      <div
+        class="status-display"
+        id="status-display"
+      >
+
         <span class="status-dot"></span>
-        <span class="status-text" id="status-text">請拉動拉桿或點擊下方按鈕開始抽獎</span>
+
+        <span
+          class="status-text"
+          id="status-text"
+        >
+          請拉動拉桿或點擊下方按鈕開始抽獎
+        </span>
+
       </div>
+
+
 
       <div class="button-group">
-        <button type="button" class="btn-spin" id="btn-spin">
-          <span class="btn-icon">⚡</span>
-          <span class="btn-label">SPIN 啟動抽獎</span>
-          <span class="btn-shortcut">[Space]</span>
+
+        <button
+          type="button"
+          class="btn-spin"
+          id="btn-spin"
+        >
+
+          <span class="btn-icon">
+            ⚡
+          </span>
+
+          <span class="btn-label">
+            SPIN 啟動抽獎
+          </span>
+
+          <span class="btn-shortcut">
+            [Space]
+          </span>
+
         </button>
+
       </div>
+
     </section>
 
-    <!-- 底部控制與自訂設定面板 -->
+
+
+    <!-- =========================
+         底部控制與自訂設定面板
+         ========================= -->
+
     <footer class="control-console">
+
       <div class="console-grid">
-        <!-- 旋轉秒數調整 -->
+
+
+        <!-- =========================
+             高速輪轉時間
+             ========================= -->
+
         <div class="control-card">
+
           <div class="control-header">
-            <label for="spin-duration-slider" class="control-title">
-              <span class="icon">⏱️</span> 高速輪轉時間
+
+            <label
+              for="spin-duration-slider"
+              class="control-title"
+            >
+
+              <span class="icon">
+                ⏱️
+              </span>
+
+              高速輪轉時間
+
             </label>
-            <span class="slider-badge" id="duration-val">3.0 秒</span>
+
+
+            <span
+              class="slider-badge"
+              id="duration-val"
+            >
+              3.0 秒
+            </span>
+
           </div>
-          <input type="range" id="spin-duration-slider" min="1.0" max="8.0" step="0.5" value="3.0" class="custom-slider">
+
+
+
+          <input
+            type="range"
+            id="spin-duration-slider"
+            min="1.0"
+            max="8.0"
+            step="0.5"
+            value="3.0"
+            class="custom-slider"
+          >
+
+
+
           <div class="slider-ticks">
-            <span>1秒 (極速)</span>
-            <span>3秒 (推薦)</span>
-            <span>8秒 (緊張)</span>
+
+            <span>
+              1秒 (極速)
+            </span>
+
+            <span>
+              3秒 (推薦)
+            </span>
+
+            <span>
+              8秒 (緊張)
+            </span>
+
           </div>
+
         </div>
 
-        <!-- 減速時間設定 -->
+
+
+        <!-- =========================
+             漸慢減速時間
+             ========================= -->
+
         <div class="control-card">
+
           <div class="control-header">
-            <label for="decel-duration-slider" class="control-title">
-              <span class="icon">🎡</span> 漸慢減速時間
+
+            <label
+              for="decel-duration-slider"
+              class="control-title"
+            >
+
+              <span class="icon">
+                🎡
+              </span>
+
+              漸慢減速時間
+
             </label>
-            <span class="slider-badge" id="decel-val">2.5 秒</span>
+
+
+            <span
+              class="slider-badge"
+              id="decel-val"
+            >
+              2.5 秒
+            </span>
+
           </div>
-          <input type="range" id="decel-duration-slider" min="1.0" max="5.0" step="0.5" value="2.5" class="custom-slider">
+
+
+
+          <input
+            type="range"
+            id="decel-duration-slider"
+            min="1.0"
+            max="5.0"
+            step="0.5"
+            value="2.5"
+            class="custom-slider"
+          >
+
+
+
           <div class="slider-ticks">
-            <span>1秒 (快速煞停)</span>
-            <span>2.5秒 (標準)</span>
-            <span>5秒 (超懸疑)</span>
+
+            <span>
+              1秒 (快速煞停)
+            </span>
+
+            <span>
+              2.5秒 (標準)
+            </span>
+
+            <span>
+              5秒 (超懸疑)
+            </span>
+
           </div>
+
         </div>
 
-        <!-- 聲音與輔助控制 -->
+
+
+        <!-- =========================
+             聲音與輔助控制
+             ========================= -->
+
         <div class="control-card control-quick-toggles">
-          <div class="control-title"><span class="icon">🔊</span> 聲光效果與資料管理</div>
-          <div class="toggle-group">
-            <button type="button" class="btn-toggle active" id="btn-sound-toggle" title="開關合成音效">
-              <span id="sound-icon">🔊</span> 音效開關
-            </button>
-            <button type="button" class="btn-toggle" id="btn-history-toggle" title="查看得獎紀錄">
-              <span>📜</span> 抽獎歷史 (<span id="history-counter">0</span>)
-            </button>
-            <button type="button" class="btn-toggle" id="btn-prizes-toggle" title="管理 product.txt 獎項">
-              <span>⚙️</span> 獎項管理 (product.txt)
-            </button>
-          </div>
-        </div>
-      </div>
-    </footer>
-  </div>
 
-  <!-- 中獎慶祝彈窗 (Modal) -->
-  <div class="modal-overlay" id="win-modal">
-    <div class="modal-card">
-      <div class="modal-glow"></div>
-      <div class="modal-ribbon">🎉 恭喜中獎 JACKPOT! 🎉</div>
-      
-      <div class="winner-preview">
-        <div class="winner-img-frame">
-          <img id="winner-img" src="pic/a1.png" alt="中獎圖片">
+          <div class="control-title">
+
+            <span class="icon">
+              🔊
+            </span>
+
+            聲光效果與資料管理
+
+          </div>
+
+
+
+          <div class="toggle-group">
+
+
+            <!-- 音效開關 -->
+
+            <button
+              type="button"
+              class="btn-toggle active"
+              id="btn-sound-toggle"
+              title="開關合成音效"
+            >
+
+              <span id="sound-icon">
+                🔊
+              </span>
+
+              音效開關
+
+            </button>
+
+
+
+            <!-- 抽獎歷史 -->
+
+            <button
+              type="button"
+              class="btn-toggle"
+              id="btn-history-toggle"
+              title="查看得獎紀錄"
+            >
+
+              <span>
+                📜
+              </span>
+
+              抽獎歷史
+
+              (
+              <span id="history-counter">
+                0
+              </span>
+              )
+
+            </button>
+
+
+
+            <!-- 獎項管理 -->
+
+            <button
+              type="button"
+              class="btn-toggle"
+              id="btn-prizes-toggle"
+              title="管理 product.txt 獎項"
+            >
+
+              <span>
+                ⚙️
+              </span>
+
+              獎項管理 (product.txt)
+
+            </button>
+
+          </div>
+
         </div>
-        <div class="winner-info">
-          <div class="winner-tag" id="winner-tag">特等獎</div>
-          <h2 class="winner-title" id="winner-title">圖片 A1</h2>
-          <p class="winner-desc" id="winner-desc">恭喜獲得幸運大獎！</p>
-        </div>
+
       </div>
+
+    </footer>
+
+
+
+    <!-- =================================================
+         QR CODE
+         注意：這裡一定要放在 game-container 裡面
+         ================================================= -->
+
+    <section class="qrcode-section">
+
+      <div class="qrcode-card">
+
+        <h3>
+          📱 掃描 QR Code
+        </h3>
+
+        <p>
+          使用手機掃描即可快速開啟
+        </p>
+
+
+        <img
+          src="qrcode.png"
+          alt="QR Code"
+          class="qrcode-image"
+        >
+
+      </div>
+
+    </section>
+
+
+  </div>
+  <!-- game-container 結束 -->
+
+
+
+  <!-- =========================
+       中獎慶祝彈窗
+       ========================= -->
+
+  <div
+    class="modal-overlay"
+    id="win-modal"
+  >
+
+    <div class="modal-card">
+
+      <div class="modal-glow"></div>
+
+
+      <div class="modal-ribbon">
+        🎉 恭喜中獎 JACKPOT! 🎉
+      </div>
+
+
+      <div class="winner-preview">
+
+
+        <div class="winner-img-frame">
+
+          <img
+            id="winner-img"
+            src="pic/a1.png"
+            alt="中獎圖片"
+          >
+
+        </div>
+
+
+
+        <div class="winner-info">
+
+          <div
+            class="winner-tag"
+            id="winner-tag"
+          >
+            特等獎
+          </div>
+
+
+          <h2
+            class="winner-title"
+            id="winner-title"
+          >
+            圖片 A1
+          </h2>
+
+
+          <p
+            class="winner-desc"
+            id="winner-desc"
+          >
+            恭喜獲得幸運大獎！
+          </p>
+
+        </div>
+
+      </div>
+
+
 
       <div class="modal-actions">
-        <button type="button" class="btn-modal-claim" id="btn-modal-close">領取獎勵 & 繼續抽獎</button>
+
+        <button
+          type="button"
+          class="btn-modal-claim"
+          id="btn-modal-close"
+        >
+          領取獎勵 & 繼續抽獎
+        </button>
+
       </div>
+
     </div>
+
   </div>
 
-  <!-- 抽獎歷史紀錄抽屜 (Drawer) -->
-  <aside class="drawer" id="history-drawer">
+
+
+  <!-- =========================
+       抽獎歷史紀錄抽屜
+       ========================= -->
+
+  <aside
+    class="drawer"
+    id="history-drawer"
+  >
+
+
     <div class="drawer-header">
-      <h3>📜 抽獎歷史紀錄</h3>
-      <button type="button" class="btn-drawer-close" id="btn-history-close">&times;</button>
+
+      <h3>
+        📜 抽獎歷史紀錄
+      </h3>
+
+
+      <button
+        type="button"
+        class="btn-drawer-close"
+        id="btn-history-close"
+      >
+        &times;
+      </button>
+
     </div>
-    <div class="drawer-body" id="history-list">
-      <div class="empty-history">尚無抽獎紀錄，拉動拉桿開始試試手氣吧！</div>
+
+
+
+    <div
+      class="drawer-body"
+      id="history-list"
+    >
+
+      <div class="empty-history">
+        尚無抽獎紀錄，拉動拉桿開始試試手氣吧！
+      </div>
+
     </div>
+
+
+
     <div class="drawer-footer">
-      <button type="button" class="btn-clear-history" id="btn-clear-history">清空歷史紀錄</button>
+
+      <button
+        type="button"
+        class="btn-clear-history"
+        id="btn-clear-history"
+      >
+        清空歷史紀錄
+      </button>
+
     </div>
+
   </aside>
 
-  <!-- 獎項管理與 product.txt 讀寫彈窗 -->
-  <div class="modal-overlay" id="prizes-modal">
+
+
+  <!-- =========================
+       獎項管理與 product.txt
+       ========================= -->
+
+  <div
+    class="modal-overlay"
+    id="prizes-modal"
+  >
+
     <div class="modal-card modal-settings">
+
+
+      <!-- 標題 -->
+
       <div class="modal-header-simple">
+
         <div>
-          <h3>⚙️ 獎項管理 (product.txt)</h3>
-          <span class="file-status-badge" id="file-status-badge">📄 檔案狀態：讀取中...</span>
+
+          <h3>
+            ⚙️ 獎項管理 (product.txt)
+          </h3>
+
+
+          <span
+            class="file-status-badge"
+            id="file-status-badge"
+          >
+            📄 檔案狀態：讀取中...
+          </span>
+
         </div>
-        <button type="button" class="btn-drawer-close" id="btn-prizes-close">&times;</button>
-      </div>
-      
-      <!-- 檔案快捷操作列 -->
-      <div class="file-toolbar">
-        <button type="button" class="btn-tool" id="btn-reload-file" title="重新載入同目錄 product.txt">🔄 重新讀取 product.txt</button>
-        <button type="button" class="btn-tool" id="btn-open-file" title="手動選擇本機檔案">📂 讀取本機檔案</button>
-        <input type="file" id="file-picker-input" accept=".txt" style="display: none;">
+
+
+        <button
+          type="button"
+          class="btn-drawer-close"
+          id="btn-prizes-close"
+        >
+          &times;
+        </button>
+
       </div>
 
-      <div class="prizes-editor-list" id="prizes-editor-list">
-        <!-- JS 動態生成 6 個獎項的名稱/說明輸入框 -->
+
+
+      <!-- =========================
+           檔案快捷操作
+           ========================= -->
+
+      <div class="file-toolbar">
+
+
+        <button
+          type="button"
+          class="btn-tool"
+          id="btn-reload-file"
+          title="重新載入同目錄 product.txt"
+        >
+          🔄 重新讀取 product.txt
+        </button>
+
+
+        <button
+          type="button"
+          class="btn-tool"
+          id="btn-open-file"
+          title="手動選擇本機檔案"
+        >
+          📂 讀取本機檔案
+        </button>
+
+
+        <input
+          type="file"
+          id="file-picker-input"
+          accept=".txt"
+          style="display: none;"
+        >
+
       </div>
-      
+
+
+
+      <!-- =========================
+           獎項編輯列表
+           ========================= -->
+
+      <div
+        class="prizes-editor-list"
+        id="prizes-editor-list"
+      >
+
+        <!-- JavaScript 動態生成 6 個獎項 -->
+
+      </div>
+
+
+
+      <!-- =========================
+           儲存按鈕
+           ========================= -->
+
       <div class="modal-actions-dual">
-        <button type="button" class="btn-save-apply" id="btn-save-prizes">💾 儲存並套用設定</button>
-        <button type="button" class="btn-export-file" id="btn-export-file">📥 儲存/匯出 product.txt</button>
+
+
+        <button
+          type="button"
+          class="btn-save-apply"
+          id="btn-save-prizes"
+        >
+          💾 儲存並套用設定
+        </button>
+
+
+        <button
+          type="button"
+          class="btn-export-file"
+          id="btn-export-file"
+        >
+          📥 儲存/匯出 product.txt
+        </button>
+
       </div>
+
     </div>
+
   </div>
 
+
+
+  <!-- =========================
+       JavaScript
+       ========================= -->
+
   <script src="app.js"></script>
+
+
 </body>
 </html>
